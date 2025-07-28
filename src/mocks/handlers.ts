@@ -19,4 +19,12 @@ export const handlers = [
       monthlyTickets: monthlyTickets,
     });
   }),
+  http.get("/departmentAnalysis", () => {
+    return HttpResponse.json({
+      courseTickets: courseTickets,
+      courseStudents: courseStudents,
+      timeSlot: timeSlot,
+      monthlyTickets: monthlyTickets,
+    });
+  }),
 ];

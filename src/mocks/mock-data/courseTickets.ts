@@ -1,26 +1,26 @@
 export const courseTickets=[
   {
-    course_name: "AWSクラウドプラクティショナー資格対策",
+    coursename: "AWSクラウドプラクティショナー資格対策",
     tickets: 10,
   },
   {
-    course_name: "ネットワーク構築基礎",
+    coursename: "ネットワーク構築基礎",
     tickets: 11,
   },
   {
-    course_name: "（模擬）AWSソリューションアーキテクトアソシエイト資格対策",
+    coursename: "（模擬）AWSソリューションアーキテクトアソシエイト資格対策",
     tickets: 16.5,
   },
   {
-    course_name: "ITパスポート試験対策",
+    coursename: "ITパスポート試験対策",
     tickets: 13.65,
   },
   {
-    course_name: "データベース（MySQL）",
+    coursename: "データベース（MySQL）",
     tickets: 7.5,
   },
   {
-    course_name: "情報セキュリティマネジメント試験対策",
+    coursename: "情報セキュリティマネジメント試験対策",
     tickets: 6,
   },
   
