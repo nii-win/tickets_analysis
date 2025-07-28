@@ -1,570 +1,570 @@
 export const courseStudentsForCompany = [
   {
-    course_name: "Javaプログラミング（通学）",
+    coursename: "Javaプログラミング（通学）",
     students: 19,
   },
   {
-    course_name: "Linuxサーバー構築（通学）",
+    coursename: "Linuxサーバー構築（通学）",
     students: 19,
   },
   {
-    course_name: "Excel 基礎・応用（通学）",
+    coursename: "Excel 基礎・応用（通学）",
     students: 14,
   },
   {
-    course_name: "データベース（MySQL）（通学）",
+    coursename: "データベース（MySQL）（通学）",
     students: 14,
   },
   {
-    course_name: "Excel VBA 基礎・実践（通学）",
+    coursename: "Excel VBA 基礎・実践（通学）",
     students: 14,
   },
   {
-    course_name: "AWSクラウドプラクティショナー資格対策（オンライン）",
+    coursename: "AWSクラウドプラクティショナー資格対策（オンライン）",
     students: 12,
   },
   {
-    course_name: "Javaプログラミング（オンライン）",
+    coursename: "Javaプログラミング（オンライン）",
     students: 12,
   },
   {
-    course_name:
+    coursename:
       "AWS基礎トレーニング（Technical Essentials 1&2レベル）（オンライン）",
     students: 11,
   },
   {
-    course_name: "Excel VBA 基礎・実践（オンライン）",
+    coursename: "Excel VBA 基礎・実践（オンライン）",
     students: 10,
   },
   {
-    course_name: "ネットワーク構築基礎（通学）",
+    coursename: "ネットワーク構築基礎（通学）",
     students: 9,
   },
   {
-    course_name: "C言語プログラミング（通学）",
+    coursename: "C言語プログラミング（通学）",
     students: 9,
   },
   {
-    course_name: "ネットワーク構築基礎（オンライン）",
+    coursename: "ネットワーク構築基礎（オンライン）",
     students: 8,
   },
   {
-    course_name: "JavaScript（通学）",
+    coursename: "JavaScript（通学）",
     students: 8,
   },
   {
-    course_name: "WEBシステム開発（Spring Framework）（通学）",
+    coursename: "WEBシステム開発（Spring Framework）（通学）",
     students: 7,
   },
   {
-    course_name: "Linuxサーバー構築（オンライン）",
+    coursename: "Linuxサーバー構築（オンライン）",
     students: 7,
   },
   {
-    course_name: "データベース（MySQL）（オンライン）",
+    coursename: "データベース（MySQL）（オンライン）",
     students: 6,
   },
   {
-    course_name: "データベース（PostgreSQL）（オンライン）",
+    coursename: "データベース（PostgreSQL）（オンライン）",
     students: 6,
   },
   {
-    course_name:
+    coursename:
       "AWS基礎トレーニング（Technical Essentials 1&2レベル）（通学）",
     students: 6,
   },
   {
-    course_name: "WEBシステム開発（Spring Framework）（オンライン）",
+    coursename: "WEBシステム開発（Spring Framework）（オンライン）",
     students: 6,
   },
   {
-    course_name: "Javaプログラミング（eラーニング）",
+    coursename: "Javaプログラミング（eラーニング）",
     students: 6,
   },
   {
-    course_name: "Java認定資格対策（OCJ-P Bronze）（通学）",
+    coursename: "Java認定資格対策（OCJ-P Bronze）（通学）",
     students: 6,
   },
   {
-    course_name: "C#プログラミング（オンライン）",
+    coursename: "C#プログラミング（オンライン）",
     students: 5,
   },
   {
-    course_name:
+    coursename:
       "基本情報技術者 言語問題対策（データ構造とアルゴリズム　Java版）（通学）",
     students: 5,
   },
   {
-    course_name: "CCNA資格対策（実習編）（オンライン）",
+    coursename: "CCNA資格対策（実習編）（オンライン）",
     students: 5,
   },
   {
-    course_name: "Linuxサーバー構築（オンライン）[Wi-Fi付き]",
+    coursename: "Linuxサーバー構築（オンライン）[Wi-Fi付き]",
     students: 5,
   },
   {
-    course_name: "Pythonプログラミング（オンライン）",
+    coursename: "Pythonプログラミング（オンライン）",
     students: 5,
   },
   {
-    course_name: "LPIC資格対策（Level1）（通学）",
+    coursename: "LPIC資格対策（Level1）（通学）",
     students: 5,
   },
   {
-    course_name: "HTML・CSSコーディング（通学）",
+    coursename: "HTML・CSSコーディング（通学）",
     students: 4,
   },
   {
-    course_name: "エンジニアのための基礎知識　スターターパック（通学）",
+    coursename: "エンジニアのための基礎知識　スターターパック（通学）",
     students: 4,
   },
   {
-    course_name: "Excel 基礎・応用（オンライン）",
+    coursename: "Excel 基礎・応用（オンライン）",
     students: 4,
   },
   {
-    course_name: "JavaScript（オンライン）",
+    coursename: "JavaScript（オンライン）",
     students: 4,
   },
   {
-    course_name: "情報処理概論（通学）",
+    coursename: "情報処理概論（通学）",
     students: 4,
   },
   {
-    course_name: "Pythonプログラミング（通学）",
+    coursename: "Pythonプログラミング（通学）",
     students: 4,
   },
   {
-    course_name: "【コース】AWS SAA 資格取得（AWS CLF 合格レベル）（通学）",
+    coursename: "【コース】AWS SAA 資格取得（AWS CLF 合格レベル）（通学）",
     students: 3,
   },
   {
-    course_name: "データベース（PostgreSQL）（通学）",
+    coursename: "データベース（PostgreSQL）（通学）",
     students: 3,
   },
   {
-    course_name: "C#プログラミング（通学）",
+    coursename: "C#プログラミング（通学）",
     students: 3,
   },
   {
-    course_name: "AWSソリューションアーキテクトアソシエイト資格対策（通学）",
+    coursename: "AWSソリューションアーキテクトアソシエイト資格対策（通学）",
     students: 3,
   },
   {
-    course_name: "ITパスポート試験対策（通学）",
+    coursename: "ITパスポート試験対策（通学）",
     students: 3,
   },
   {
-    course_name: "C言語プログラミング（オンライン）",
+    coursename: "C言語プログラミング（オンライン）",
     students: 3,
   },
   {
-    course_name: "クラウドエンジニア概論（通学）",
+    coursename: "クラウドエンジニア概論（通学）",
     students: 3,
   },
   {
-    course_name: "プロジェクト開発実践（Spring Framework）（オンライン）",
+    coursename: "プロジェクト開発実践（Spring Framework）（オンライン）",
     students: 3,
   },
   {
-    course_name: "【コース】Javaプログラミング＋情報処理概論（通学）",
+    coursename: "【コース】Javaプログラミング＋情報処理概論（通学）",
     students: 3,
   },
   {
-    course_name: "Webアプリ開発（React.js）（オンライン）",
+    coursename: "Webアプリ開発（React.js）（オンライン）",
     students: 3,
   },
   {
-    course_name: "Pythonデータ分析（通学）",
+    coursename: "Pythonデータ分析（通学）",
     students: 3,
   },
   {
-    course_name: "C#プログラミング（eラーニング）",
+    coursename: "C#プログラミング（eラーニング）",
     students: 3,
   },
   {
-    course_name: "TypeScript（通学）",
+    coursename: "TypeScript（通学）",
     students: 3,
   },
   {
-    course_name: "Pythonプログラミング（eラーニング）",
+    coursename: "Pythonプログラミング（eラーニング）",
     students: 3,
   },
   {
-    course_name: "LPIC資格対策（Level1）（オンライン）[Wi-Fi付き]",
+    coursename: "LPIC資格対策（Level1）（オンライン）[Wi-Fi付き]",
     students: 2,
   },
   {
-    course_name: "【コース】AWS CLF 資格取得（インフラ経験有）（オンライン）",
+    coursename: "【コース】AWS CLF 資格取得（インフラ経験有）（オンライン）",
     students: 2,
   },
   {
-    course_name: "ノーコードホームページ制作（STUDIO）（通学）",
+    coursename: "ノーコードホームページ制作（STUDIO）（通学）",
     students: 2,
   },
   {
-    course_name: "ITパスポート試験対策（eラーニング）",
+    coursename: "ITパスポート試験対策（eラーニング）",
     students: 2,
   },
   {
-    course_name: "【コース】Javaプログラミング＋情報処理概論（オンライン）",
+    coursename: "【コース】Javaプログラミング＋情報処理概論（オンライン）",
     students: 2,
   },
   {
-    course_name: "組込みシステム開発（マイコンボード・Arduino）（通学）",
+    coursename: "組込みシステム開発（マイコンボード・Arduino）（通学）",
     students: 2,
   },
   {
-    course_name: "ネットワーク構築基礎（オンライン）[Wi-Fi付き]",
+    coursename: "ネットワーク構築基礎（オンライン）[Wi-Fi付き]",
     students: 2,
   },
   {
-    course_name: "JavaScript & jQuery活用（通学）",
+    coursename: "JavaScript & jQuery活用（通学）",
     students: 2,
   },
   {
-    course_name: "プロジェクト開発実践（Spring Framework）（通学）",
+    coursename: "プロジェクト開発実践（Spring Framework）（通学）",
     students: 2,
   },
   {
-    course_name: "Java認定資格対策（OCJ-P Bronze）（オンライン）",
+    coursename: "Java認定資格対策（OCJ-P Bronze）（オンライン）",
     students: 2,
   },
   {
-    course_name: "データベース（MySQL）（オンライン）[Wi-Fi付き]",
+    coursename: "データベース（MySQL）（オンライン）[Wi-Fi付き]",
     students: 2,
   },
   {
-    course_name: "Webアプリ開発（React.js）（通学）",
+    coursename: "Webアプリ開発（React.js）（通学）",
     students: 2,
   },
   {
-    course_name:
+    coursename:
       "【コース】AWS SAA 資格取得（AWS CLF 合格レベル）（オンライン）",
     students: 2,
   },
   {
-    course_name: "Access 基礎・応用 14回（オンライン）",
+    coursename: "Access 基礎・応用 14回（オンライン）",
     students: 2,
   },
   {
-    course_name:
+    coursename:
       "AWSソリューションアーキテクトアソシエイト資格対策（オンライン）",
     students: 2,
   },
   {
-    course_name: "Laravel（PHP フレームワーク）（オンライン）",
+    coursename: "Laravel（PHP フレームワーク）（オンライン）",
     students: 2,
   },
   {
-    course_name:
+    coursename:
       "AWSソリューションアーキテクトアソシエイト資格対策（eラーニング）",
     students: 2,
   },
   {
-    course_name: "エンジニアのための基礎知識　スターターパック（オンライン）",
+    coursename: "エンジニアのための基礎知識　スターターパック（オンライン）",
     students: 2,
   },
   {
-    course_name: "Access 基礎・応用 14回（通学）",
+    coursename: "Access 基礎・応用 14回（通学）",
     students: 2,
   },
   {
-    course_name: "Linuxサーバー応用（LPIC-Level2対応）（通学）",
+    coursename: "Linuxサーバー応用（LPIC-Level2対応）（通学）",
     students: 2,
   },
   {
-    course_name: "HTML・CSSコーディング（オンライン）",
+    coursename: "HTML・CSSコーディング（オンライン）",
     students: 2,
   },
   {
-    course_name:
+    coursename:
       "（模擬）AWSソリューションアーキテクトアソシエイト資格対策（通学）",
     students: 2,
   },
   {
-    course_name: "Excel 応用（オンライン）[PC無]",
+    coursename: "Excel 応用（オンライン）[PC無]",
     students: 2,
   },
   {
-    course_name: "Javaプログラミング（オンライン）[Wi-Fi付き]",
+    coursename: "Javaプログラミング（オンライン）[Wi-Fi付き]",
     students: 2,
   },
   {
-    course_name: "Java認定資格対策（OCJ-P Silver）（通学）",
+    coursename: "Java認定資格対策（OCJ-P Silver）（通学）",
     students: 2,
   },
   {
-    course_name: "生成AI（ChatGPT・Copilot）（オンライン）",
+    coursename: "生成AI（ChatGPT・Copilot）（オンライン）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "AIプログラミング実習（機械学習＆Deep Learning）（eラーニング）",
     students: 1,
   },
   {
-    course_name: "【コース】AWS CLF 資格取得（オンライン）",
+    coursename: "【コース】AWS CLF 資格取得（オンライン）",
     students: 1,
   },
   {
-    course_name: "Excel VBA 基礎・実践（オンライン）[Wi-Fi付き]",
+    coursename: "Excel VBA 基礎・実践（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Java認定資格対策（OCJ-P Silver）（オンライン）",
+    coursename: "Java認定資格対策（OCJ-P Silver）（オンライン）",
     students: 1,
   },
   {
-    course_name: "LPIC資格対策（Level1）（オンライン）",
+    coursename: "LPIC資格対策（Level1）（オンライン）",
     students: 1,
   },
   {
-    course_name: "WEBシステム開発（Spring Framework）（オンライン）[Wi-Fi付き]",
+    coursename: "WEBシステム開発（Spring Framework）（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "AWS Security Essentials",
+    coursename: "AWS Security Essentials",
     students: 1,
   },
   {
-    course_name: "Access マクロ・VBA（通学）",
+    coursename: "Access マクロ・VBA（通学）",
     students: 1,
   },
   {
-    course_name: "AWS Technical Essentials",
+    coursename: "AWS Technical Essentials",
     students: 1,
   },
   {
-    course_name: "CCNA資格対策（実習編）（通学）",
+    coursename: "CCNA資格対策（実習編）（通学）",
     students: 1,
   },
   {
-    course_name: "Node.js（サーバーサイドJavaScript）（通学）",
+    coursename: "Node.js（サーバーサイドJavaScript）（通学）",
     students: 1,
   },
   {
-    course_name: "AWS CI/CD・コンテナ実習（オンライン）",
+    coursename: "AWS CI/CD・コンテナ実習（オンライン）",
     students: 1,
   },
   {
-    course_name: "Photoshop（オンライン）",
+    coursename: "Photoshop（オンライン）",
     students: 1,
   },
   {
-    course_name: "Webシステム開発（Ruby on Rails）（オンライン）",
+    coursename: "Webシステム開発（Ruby on Rails）（オンライン）",
     students: 1,
   },
   {
-    course_name: "Power Automate Desktop（オンライン）",
+    coursename: "Power Automate Desktop（オンライン）",
     students: 1,
   },
   {
-    course_name: "WordPressテーマ＆プラグイン実践（オンライン）",
+    coursename: "WordPressテーマ＆プラグイン実践（オンライン）",
     students: 1,
   },
   {
-    course_name: "Power BI Desktop（オンライン）",
+    coursename: "Power BI Desktop（オンライン）",
     students: 1,
   },
   {
-    course_name: "データベース（MySQL）（eラーニング）",
+    coursename: "データベース（MySQL）（eラーニング）",
     students: 1,
   },
   {
-    course_name: "Power BI Desktop（オンライン）[Wi-Fi付き]",
+    coursename: "Power BI Desktop（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "（模擬試験）LPIC資格対策（Level 1）（通学）",
+    coursename: "（模擬試験）LPIC資格対策（Level 1）（通学）",
     students: 1,
   },
   {
-    course_name: "PowerPoint アニメーション実践（オンライン）",
+    coursename: "PowerPoint アニメーション実践（オンライン）",
     students: 1,
   },
   {
-    course_name: "AIプログラミング実習（機械学習＆Deep Learning）（通学）",
+    coursename: "AIプログラミング実習（機械学習＆Deep Learning）（通学）",
     students: 1,
   },
   {
-    course_name: "PowerPoint デザイン実践（オンライン）",
+    coursename: "PowerPoint デザイン実践（オンライン）",
     students: 1,
   },
   {
-    course_name: "ノーコードホームページ制作（STUDIO）（オンライン）",
+    coursename: "ノーコードホームページ制作（STUDIO）（オンライン）",
     students: 1,
   },
   {
-    course_name: "PowerPoint 基礎・応用（オンライン）",
+    coursename: "PowerPoint 基礎・応用（オンライン）",
     students: 1,
   },
   {
-    course_name: "ホームページ制作（HTML&CSS・スマホサイト制作）（オンライン）",
+    coursename: "ホームページ制作（HTML&CSS・スマホサイト制作）（オンライン）",
     students: 1,
   },
   {
-    course_name: "PowerPoint 基礎・応用（オンライン）[Wi-Fi付き]",
+    coursename: "PowerPoint 基礎・応用（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "情報セキュリティマネジメント試験対策（eラーニング）",
+    coursename: "情報セキュリティマネジメント試験対策（eラーニング）",
     students: 1,
   },
   {
-    course_name: "Python3エンジニア認定基礎試験対策（オンライン）",
+    coursename: "Python3エンジニア認定基礎試験対策（オンライン）",
     students: 1,
   },
   {
-    course_name: "AWS CI/CD・コンテナ実習（オンライン）[Wi-Fi付き]",
+    coursename: "AWS CI/CD・コンテナ実習（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Python3エンジニア認定基礎試験対策（オンライン）[Wi-Fi付き]",
+    coursename: "Python3エンジニア認定基礎試験対策（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "【コース】AWS SAA 資格取得（インフラ経験有）（通学）",
+    coursename: "【コース】AWS SAA 資格取得（インフラ経験有）（通学）",
     students: 1,
   },
   {
-    course_name: "Python3エンジニア認定基礎試験対策（通学）",
+    coursename: "Python3エンジニア認定基礎試験対策（通学）",
     students: 1,
   },
   {
-    course_name: "【コース】AWS CLF 資格取得（インフラ経験有）（通学）",
+    coursename: "【コース】AWS CLF 資格取得（インフラ経験有）（通学）",
     students: 1,
   },
   {
-    course_name: "Pythonデータ分析（オンライン）",
+    coursename: "Pythonデータ分析（オンライン）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "【コース】Javaプログラミング＋情報処理概論（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Pythonデータ分析（オンライン）[Wi-Fi付き]",
+    coursename: "Pythonデータ分析（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "AWS基礎トレーニング（Technical Essentials 1&2レベル）（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "（模擬試験）CCNA資格対策（通学）",
+    coursename: "（模擬試験）CCNA資格対策（通学）",
     students: 1,
   },
   {
-    course_name: "JavaScript（オンライン）[Wi-Fi付き]",
+    coursename: "JavaScript（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Excel 基礎・応用（オンライン）[Wi-Fi付き]",
+    coursename: "Excel 基礎・応用（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "【コース】AWS CLF 資格取得（通学）",
+    coursename: "【コース】AWS CLF 資格取得（通学）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "AWSクラウドプラクティショナー資格対策（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "データベース（PostgreSQL）（オンライン）[Wi-Fi付き]",
+    coursename: "データベース（PostgreSQL）（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Pythonプログラミング（オンライン）[Wi-Fi付き]",
+    coursename: "Pythonプログラミング（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "ネットワーク概論（eラーニング）",
+    coursename: "ネットワーク概論（eラーニング）",
     students: 1,
   },
   {
-    course_name: "Figma&UI/UX デザイン（オンライン）",
+    coursename: "Figma&UI/UX デザイン（オンライン）",
     students: 1,
   },
   {
-    course_name: "Java認定資格対策（OCJ-P Bronze）（eラーニング）",
+    coursename: "Java認定資格対策（OCJ-P Bronze）（eラーニング）",
     students: 1,
   },
   {
-    course_name: "Rubyプログラミング（eラーニング）",
+    coursename: "Rubyプログラミング（eラーニング）",
     students: 1,
   },
   {
-    course_name: "ネットワーク入門（eラーニング）",
+    coursename: "ネットワーク入門（eラーニング）",
     students: 1,
   },
   {
-    course_name: "Figma&UI/UX デザイン（オンライン）[Wi-Fi付き]",
+    coursename: "Figma&UI/UX デザイン（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "C言語プログラミング（eラーニング）",
+    coursename: "C言語プログラミング（eラーニング）",
     students: 1,
   },
   {
-    course_name: "AWSクラウドプラクティショナー資格対策（通学）",
+    coursename: "AWSクラウドプラクティショナー資格対策（通学）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "（模擬）AWSソリューションアーキテクトアソシエイト資格対策（オンライン）",
     students: 1,
   },
   {
-    course_name: "HTML・CSSコーディング（オンライン）[Wi-Fi付き]",
+    coursename: "HTML・CSSコーディング（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "基本情報技術者 言語問題対策（データ構造とアルゴリズム　Java版）（オンライン）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "Webサイト制作（HTML&CSS・レスポンシブデザイン）（オンライン）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "基本情報技術者 言語問題対策（データ構造とアルゴリズム　Python版）（オンライン）",
     students: 1,
   },
   {
-    course_name: "Webサイト制作（HTML&CSS・レスポンシブデザイン）（通学）",
+    coursename: "Webサイト制作（HTML&CSS・レスポンシブデザイン）（通学）",
     students: 1,
   },
   {
-    course_name: "C言語プログラミング（オンライン）[Wi-Fi付き]",
+    coursename: "C言語プログラミング（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Webシステム開発（Django）（eラーニング）",
+    coursename: "Webシステム開発（Django）（eラーニング）",
     students: 1,
   },
   {
-    course_name:
+    coursename:
       "組込みシステム開発（マイコンボード・Arduino）（オンライン）[Wi-Fi付き]",
     students: 1,
   },
   {
-    course_name: "Webシステム開発（Django）（オンライン）",
+    coursename: "Webシステム開発（Django）（オンライン）",
     students: 1,
   },
   {
-    course_name: "AWS Cloud Practitioner Essentials",
+    coursename: "AWS Cloud Practitioner Essentials",
     students: 1,
   },
   {
-    course_name: "Webシステム開発（Django）（通学）",
+    coursename: "Webシステム開発（Django）（通学）",
     students: 1,
   },
 ];

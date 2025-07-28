@@ -1,34 +1,34 @@
 export const courseStudents = [
   {
-    course_name: "Javaプログラミング（通学）",
+    coursename: "Javaプログラミング（通学）",
     students: 19,
   },
   {
-    course_name: "Linuxサーバー構築（通学）",
+    coursename: "Linuxサーバー構築（通学）",
     students: 19,
   },
   {
-    course_name: "Excel 基礎・応用（通学）",
+    coursename: "Excel 基礎・応用（通学）",
     students: 14,
   },
   {
-    course_name: "データベース（MySQL）（通学）",
+    coursename: "データベース（MySQL）（通学）",
     students: 14,
   },
   {
-    course_name: "Excel VBA 基礎・実践（通学）",
+    coursename: "Excel VBA 基礎・実践（通学）",
     students: 14,
   },
   {
-    course_name: "AWSクラウドプラクティショナー資格対策（オンライン）",
+    coursename: "AWSクラウドプラクティショナー資格対策（オンライン）",
     students: 12,
   },
   {
-    course_name: "Javaプログラミング（オンライン）",
+    coursename: "Javaプログラミング（オンライン）",
     students: 12,
   },
   {
-    course_name:
+    coursename:
       "AWS基礎トレーニング（Technical Essentials 1&2レベル）（オンライン）",
     students: 11,
   },
