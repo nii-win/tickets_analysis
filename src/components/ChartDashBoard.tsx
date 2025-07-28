@@ -1,25 +1,25 @@
-import { useEffect, useState, type FC } from "react";
+import { type FC } from "react";
 import HorizontalBarChart from "./charts/HorizontalBarChart";
 import HorizontalDoubleBarChart from "./charts/HorizontalDoubleBarChart";
 import { Flex, Typography } from "antd";
 import type {
-  CourseTickets,
-  MonthlyTickets,
+  // CourseTickets,
+  // MonthlyTickets,
   Params,
-  StudentsForCourses,
-  TimeSlot,
+  // StudentsForCourses,
+  // TimeSlot,
 } from "../api/company/types";
 import getCompanyAnalysis from "../api/company/getCompanyAnalysis";
 import { useQuery } from "@tanstack/react-query";
-import OverlayAreaChart from "./charts/OverlayAreaChart";
-import StackedBarChart from "./charts/StackedBarChart";
+// import OverlayAreaChart from "./charts/OverlayAreaChart";
+// import StackedBarChart from "./charts/StackedBarChart";
 
-type DepartmentAnalysis = {
-  courseTickets: CourseTickets[];
-  courseStudents: StudentsForCourses[];
-  timeSlot: TimeSlot[];
-  monthlyTickets: MonthlyTickets[];
-};
+// type DepartmentAnalysis = {
+//   courseTickets: CourseTickets[];
+//   courseStudents: StudentsForCourses[];
+//   timeSlot: TimeSlot[];
+//   monthlyTickets: MonthlyTickets[];
+// };
 
 type propsType = {
   companyParams: Params | null;
@@ -36,14 +36,14 @@ const ChartDashBoard: FC<propsType> = (props) => {
   const barColor = "#FFD449";
   const secondaryBarColor = "#A8D5E2";
 
-  const [departmentAnalysis, setDepartmentAnalysis] =
-    useState<DepartmentAnalysis | null>(null);
+  // const [departmentAnalysis, setDepartmentAnalysis] =
+  //   useState<DepartmentAnalysis | null>(null);
 
-  useEffect(() => {
-    fetch("/departmentAnalysis")
-      .then((res) => res.json())
-      .then((data) => setDepartmentAnalysis(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/departmentAnalysis")
+  //     .then((res) => res.json())
+  //     .then((data) => setDepartmentAnalysis(data));
+  // }, []);
 
   return (
     <>
@@ -72,7 +72,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
           barColor={barColor}
         />
       </Flex>
-      <Title level={1} style={{ textAlign: "center", marginTop: 48 }}>
+      {/* <Title level={1} style={{ textAlign: "center", marginTop: 48 }}>
         PCA新宿支店チケット分析
       </Title>
       <Flex vertical gap={48}>
@@ -101,7 +101,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
             title="曜日別チケット数 "
           />
         </Flex>
-      </Flex>
+      </Flex> */}
     </>
   );
 };
