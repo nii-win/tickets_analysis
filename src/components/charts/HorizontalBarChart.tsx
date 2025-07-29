@@ -16,6 +16,8 @@ import type {
   StudentsForBranches,
   StudentsForCourses,
 } from "../../api/company/types";
+import EmptyData from "../common/EmptyData";
+import CustomToolTip from "../common/CustomToolTip";
 
 type ChartData = StudentsForBranches | StudentsForCourses | CourseTickets;
 type Props = {
@@ -76,43 +78,47 @@ const HorizontalBarChart: React.FC<Props> = ({
             </div>
           ) : null}
         </Flex>
-        <div style={{ width: "100%" }}>
-          <BarChart
-            width={1000}
-            height={chartHeight}
-            layout="vertical"
-            data={displayedChartData}
-            margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-            <XAxis type="number" />
-            <YAxis
-              dataKey={nameKey}
-              type="category"
-              width={200}
-              tick={{
-                fontSize: 14,
-              }}
-              tickFormatter={(value: string) =>
-                value.length > 10 ? `${value.slice(0, 15)}...` : value
-              }
-              interval={0}
-            />
-            <Tooltip />
-            <Bar
-              dataKey={valueKey}
-              barSize={barHeight}
-              fill={barColor}
-              activeBar={<Rectangle fill="#99a9b7ff" />}
-              label={{ position: "insideRight", fill: "#104911" }}
-              name={valueKey === "tickets" ? "チケット数" : "受講人数"}
+        {chartData.length === 0 ? (
+          <EmptyData />
+        ) : (
+          <div style={{ width: "100%" }}>
+            <BarChart
+              width={950}
+              height={chartHeight}
+              layout="vertical"
+              data={displayedChartData}
+              margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
             >
-              {displayedChartData.map((_, index) => (
-                <Cell key={`cell-${index}`} />
-              ))}
-            </Bar>
-          </BarChart>
-        </div>
+              <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+              <XAxis type="number" />
+              <YAxis
+                dataKey={nameKey}
+                type="category"
+                width={200}
+                tick={{
+                  fontSize: 14,
+                }}
+                tickFormatter={(value: string) =>
+                  value.length > 10 ? `${value.slice(0, 15)}...` : value
+                }
+                interval={0}
+              />
+              <Tooltip content={CustomToolTip} />
+              <Bar
+                dataKey={valueKey}
+                barSize={barHeight}
+                fill={barColor}
+                activeBar={<Rectangle fill="#99a9b7ff" />}
+                label={{ position: "insideRight", fill: "#104911" }}
+                name={valueKey === "tickets" ? "チケット数" : "受講人数"}
+              >
+                {displayedChartData.map((_, index) => (
+                  <Cell key={`cell-${index}`} />
+                ))}
+              </Bar>
+            </BarChart>
+          </div>
+        )}
       </div>
     </>
   );
