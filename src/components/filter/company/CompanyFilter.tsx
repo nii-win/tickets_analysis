@@ -70,82 +70,90 @@ const CompanyFilter: FC<propsType> = (props) => {
 
   return (
     <>
-      <Flex align="center" justify="center">
-        <Title level={4} style={{ margin: 0 }}>
-          フィルターオプション
-        </Title>
-        <Button
-          size="large"
-          type="text"
-          onClick={toggleFilter}
-          icon={isOpen ? <MinusSquareOutlined /> : <PlusSquareOutlined />}
-        />
-      </Flex>
+      <div>
+        <Flex align="center" justify="center" style={{ margin: 15 }}>
+          <Title level={5} style={{ margin: 0 }}>
+            フィルターオプション
+          </Title>
+          <Button
+            size="large"
+            type="text"
+            onClick={toggleFilter}
+            icon={isOpen ? <MinusSquareOutlined /> : <PlusSquareOutlined />}
+          />
+        </Flex>
 
-      {isOpen && (
-        <Card>
-          <Form form={form} style={formStyle} layout="vertical">
-            <Row gutter={32} align="stretch">
-              <Col flex="1 1 0" style={colStyle}>
-                <Form.Item
-                  name="company"
-                  label="企業名"
-                  style={formItemStyle}
-                  rules={[
-                    { required: true, message: "企業名を選択してください" },
-                  ]}
-                >
-                  <Select
-                    placeholder="企業を選択"
-                    options={companySelectOptions}
-                  />
-                </Form.Item>
-              </Col>
-              <Col flex="1 1 0" style={colStyle}>
-                <Form.Item
-                  label="年度"
-                  name="year"
-                  style={formItemStyle}
-                  rules={[
-                    { required: true, message: "年度を選択してください" },
-                  ]}
-                >
-                  <Select placeholder="年度を選択" options={yearSelectOptins} />
-                </Form.Item>
-              </Col>
+        {isOpen && (
+          <Card>
+            <Form form={form} style={formStyle} layout="vertical">
+              <Row gutter={32} align="stretch">
+                <Col flex="1 1 0" style={colStyle}>
+                  <Form.Item
+                    name="company"
+                    label="企業名"
+                    style={formItemStyle}
+                    rules={[
+                      { required: true, message: "企業名を選択してください" },
+                    ]}
+                  >
+                    <Select
+                      placeholder="企業を選択"
+                      options={companySelectOptions}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col flex="1 1 0" style={colStyle}>
+                  <Form.Item
+                    label="年度"
+                    name="year"
+                    style={formItemStyle}
+                    rules={[
+                      { required: true, message: "年度を選択してください" },
+                    ]}
+                  >
+                    <Select
+                      placeholder="年度を選択"
+                      options={yearSelectOptins}
+                    />
+                  </Form.Item>
+                </Col>
 
-              <Col flex="2 1 0" style={colStyle}>
-                <Form.Item
-                  label="月"
-                  name="month"
-                  style={formItemStyle}
-                  rules={[
-                    { required: true, message: "月を1つ以上選択してください" },
-                  ]}
-                >
-                  <CheckboxGroup>
-                    <Row gutter={[0, 8]}>
-                      {monthData.map((month) => (
-                        <Col span={4} key={month} style={checkboxGroupStyle}>
-                          <Checkbox value={month}>{month}月</Checkbox>
-                        </Col>
-                      ))}
-                    </Row>
-                  </CheckboxGroup>
-                </Form.Item>
-              </Col>
+                <Col flex="2 1 0" style={colStyle}>
+                  <Form.Item
+                    label="月"
+                    name="month"
+                    style={formItemStyle}
+                    rules={[
+                      {
+                        required: true,
+                        message: "月を1つ以上選択してください",
+                      },
+                    ]}
+                  >
+                    <CheckboxGroup>
+                      <Row gutter={[0, 8]}>
+                        {monthData.map((month) => (
+                          <Col span={4} key={month} style={checkboxGroupStyle}>
+                            <Checkbox value={month}>{month}月</Checkbox>
+                          </Col>
+                        ))}
+                      </Row>
+                    </CheckboxGroup>
+                  </Form.Item>
+                </Col>
 
-              <Col flex="0 0 100px" style={buttonColStyle}>
-                <Form.Item style={formItemStyle}>
-                  <Button type="primary" onClick={handleSubmit}>
-                    分析
-                  </Button>
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        </Card>
-      )}
+                <Col flex="0 0 100px" style={buttonColStyle}>
+                  <Form.Item style={formItemStyle}>
+                    <Button type="primary" onClick={handleSubmit}>
+                      分析
+                    </Button>
+                  </Form.Item>
+                </Col>
+              </Row>
+            </Form>
+          </Card>
+        )}
+      </div>
     </>
   );
 };
