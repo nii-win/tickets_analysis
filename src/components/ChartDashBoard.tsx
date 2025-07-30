@@ -30,6 +30,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
   const { data: companyAnalysis } = useSuspenseQuery({
     queryKey: ["companyAnalysis", companyParams],
     queryFn: () => getCompanyAnalysis(companyParams!),
+    staleTime: 1000 * 60 * 5,
   });
   // const { Title } = Typography;
   const barColor = "#FFD449";
