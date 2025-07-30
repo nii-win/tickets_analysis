@@ -98,9 +98,14 @@ const HorizontalBarChart: React.FC<Props> = ({
                 tick={{
                   fontSize: 14,
                 }}
-                tickFormatter={(value: string) =>
-                  value.length > 10 ? `${value.slice(0, 15)}...` : value
-                }
+                tickFormatter={(value: string) => {
+                  if (nameKey === "department") {
+                    const parts = String(value).split("_");
+                    return parts.length > 1 ? parts[1] : value;
+                  } else {
+                    return value.length > 12 ? value.slice(0, 12) : value;
+                  }
+                }}
                 interval={0}
               />
               <Tooltip content={CustomToolTip} />

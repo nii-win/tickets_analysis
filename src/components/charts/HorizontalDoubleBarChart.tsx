@@ -84,9 +84,10 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 type="category"
                 width={200}
                 tick={{ fontSize: 14 }}
-                tickFormatter={(value: string) =>
-                  value.length > 10 ? `${value.slice(0, 15)}...` : value
-                }
+                tickFormatter={(value: string) => {
+                  const parts = String(value).split("_");
+                  return parts.length > 1 ? parts[1] : value;
+                }}
                 interval={0}
               />
               <Tooltip content={CustomToolTip} />
