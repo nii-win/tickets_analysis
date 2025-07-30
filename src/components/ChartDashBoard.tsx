@@ -1,18 +1,14 @@
-import { type FC } from "react";
+import { Suspense, useState, type FC } from "react";
 import HorizontalBarChart from "./charts/HorizontalBarChart";
 import HorizontalDoubleBarChart from "./charts/HorizontalDoubleBarChart";
-import { Card, Flex } from "antd";
+import { Card, Flex, Modal, Typography } from "antd";
 import type {
-  // CourseTickets,
-  // MonthlyTickets,
   Params,
-  // StudentsForCourses,
-  // TimeSlot,
 } from "../api/company/types";
 import getCompanyAnalysis from "../api/company/getCompanyAnalysis";
 import { useSuspenseQuery } from "@tanstack/react-query";
-// import OverlayAreaChart from "./charts/OverlayAreaChart";
-// import StackedBarChart from "./charts/StackedBarChart";
+import Loading from "./common/Loading";
+import DepartmentDashBoard from "./DepartmentDashBoard";
 
 // type DepartmentAnalysis = {
 //   courseTickets: CourseTickets[];
@@ -32,18 +28,19 @@ const ChartDashBoard: FC<propsType> = (props) => {
     queryFn: () => getCompanyAnalysis(companyParams!),
     staleTime: 1000 * 60 * 5,
   });
-  // const { Title } = Typography;
+  const [selectedDepartment, setSelectedDepartment] = useState<string | null>(
+    null
+  );
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { Title } = Typography;
+
   const barColor = "#FFD449";
   const secondaryBarColor = "#A8D5E2";
 
-  // const [departmentAnalysis, setDepartmentAnalysis] =
-  //   useState<DepartmentAnalysis | null>(null);
-
-  // useEffect(() => {
-  //   fetch("/departmentAnalysis")
-  //     .then((res) => res.json())
-  //     .then((data) => setDepartmentAnalysis(data));
-  // }, []);
+  const handleBarClick = (departmentName: string) => {
+    setSelectedDepartment(departmentName);
+    setIsModalVisible(true);
+  };
 
   return (
     <>
@@ -54,6 +51,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
             title="チケット数支店ランキング"
             barColor={barColor}
             secondaryBarColor={secondaryBarColor}
+            handleBarClick={handleBarClick}
           />
           <HorizontalBarChart
             chartData={companyAnalysis?.studentsForBranches ?? []}
@@ -61,6 +59,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
             valueKey="students"
             title="受講人数支店ランキング"
             barColor={barColor}
+            handleBarClick={handleBarClick}
           />
           <HorizontalBarChart
             chartData={companyAnalysis?.studentsForCourses ?? []}
@@ -71,36 +70,29 @@ const ChartDashBoard: FC<propsType> = (props) => {
           />
         </Flex>
       </Card>
-      {/* <Title level={1} style={{ textAlign: "center", marginTop: 48 }}>
-        PCA新宿支店チケット分析
-      </Title>
-      <Flex vertical gap={48}>
-        <HorizontalBarChart
-          chartData={departmentAnalysis?.courseTickets ?? []}
-          nameKey="coursename"
-          valueKey="tickets"
-          title="チケット数講座ランキング"
-          barColor={barColor}
-        />
-        <HorizontalBarChart
-          chartData={departmentAnalysis?.courseStudents ?? []}
-          nameKey="coursename"
-          valueKey="students"
-          title="受講人数講座ランキング"
-          barColor={barColor}
-        />
-        <Flex justify="space-between" gap={48}>
-          <OverlayAreaChart
-            chartData={departmentAnalysis?.monthlyTickets ?? []}
-            title="月別チケット数"
-            colors={{ thisYear: barColor, lastYear: secondaryBarColor }}
-          />
-          <StackedBarChart
-            chartData={departmentAnalysis?.timeSlot ?? []}
-            title="曜日別チケット数 "
-          />
-        </Flex>
-      </Flex> */}
+      <Modal
+        title={
+          <Title level={3} style={{ textAlign: "center", margin: 0 }}>
+            {selectedDepartment}チケット分析
+          </Title>
+        }
+        width={1000}
+        open={isModalVisible}
+        onCancel={() => setIsModalVisible(false)}
+        footer={null}
+        centered
+        destroyOnHidden
+        styles={{ body: { maxHeight: "80vh", overflowY: "auto" } }}
+      >
+        {selectedDepartment && (
+          <Suspense fallback={<Loading />}>
+            <DepartmentDashBoard
+              companyParams={companyParams}
+              selectedDepartment={selectedDepartment}
+            />
+          </Suspense>
+        )}
+      </Modal>
     </>
   );
 };
