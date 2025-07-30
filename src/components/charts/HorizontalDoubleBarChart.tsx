@@ -7,17 +7,20 @@ import {
   Tooltip,
   CartesianGrid,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import { Flex, Switch, Typography } from "antd";
 import type { TicketsForBranches } from "../../api/company/types";
 import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
+import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 
 type Props = {
   chartData: TicketsForBranches[];
   title: string;
   barColor?: string;
   secondaryBarColor?: string;
+  handleBarClick?: (departmentName: string) => void;
 };
 
 const HorizontalDoubleBarChart: React.FC<Props> = ({
@@ -25,6 +28,7 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
   title,
   barColor = "#70d5f4",
   secondaryBarColor = "#99a9b7ff",
+  handleBarClick,
 }) => {
   const [allShow, setAllShow] = useState(false);
   const { Title, Text } = Typography;
@@ -68,45 +72,53 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
         {chartData.length === 0 ? (
           <EmptyData />
         ) : (
-          <div style={{ height: chartHeight }}>
-            <BarChart
-              data={displayedChartData}
-              width={950}
-              height={chartHeight}
-              layout="vertical"
-              barGap={0}
-              margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-              <XAxis type="number" />
-              <YAxis
-                dataKey="department"
-                type="category"
-                width={200}
-                tick={{ fontSize: 14 }}
-                tickFormatter={(value: string) => {
-                  const parts = String(value).split("_");
-                  return parts.length > 1 ? parts[1] : value;
-                }}
-                interval={0}
-              />
-              <Tooltip content={CustomToolTip} />
-              <Legend formatter={(value: string) => <Text>{value}</Text>} />
-              <Bar
-                barSize={barHeight}
-                dataKey="this_year"
-                fill={barColor}
-                name={"今年"}
-                label={{ position: "insideRight", fill: "#104911" }}
-              />
-              <Bar
-                barSize={barHeight}
-                dataKey="last_year"
-                fill={secondaryBarColor}
-                name={"前年"}
-                label={{ position: "insideRight", fill: "#104911" }}
-              />
-            </BarChart>
+          <div style={{ width: "100%" }}>
+            <ResponsiveContainer height={chartHeight}>
+              <BarChart
+                data={displayedChartData}
+                layout="vertical"
+                barGap={0}
+                margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" />
+                <YAxis
+                  dataKey="department"
+                  type="category"
+                  width={200}
+                  tick={{ fontSize: 14 }}
+                  tickFormatter={(value: string) => {
+                    const parts = String(value).split("_");
+                    return parts.length > 1 ? parts[1] : value;
+                  }}
+                  interval={0}
+                />
+                <Tooltip content={CustomToolTip} />
+                <Legend formatter={(value: string) => <Text>{value}</Text>} />
+                <Bar
+                  barSize={barHeight}
+                  dataKey="this_year"
+                  fill={barColor}
+                  name={"今年"}
+                  label={{ position: "insideRight", fill: "#104911" }}
+                  onClick={(data: BarRectangleItem) => {
+                    handleBarClick?.(data.payload.department);
+                  }}
+                  style={{ cursor: handleBarClick ? "pointer" : "default" }}
+                />
+                <Bar
+                  barSize={barHeight}
+                  dataKey="last_year"
+                  fill={secondaryBarColor}
+                  name={"前年"}
+                  label={{ position: "insideRight", fill: "#104911" }}
+                  onClick={(data: BarRectangleItem) => {
+                    handleBarClick?.(data.payload.department);
+                  }}
+                  style={{ cursor: handleBarClick ? "pointer" : "default" }}
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         )}
       </div>

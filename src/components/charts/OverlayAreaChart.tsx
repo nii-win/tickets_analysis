@@ -10,6 +10,9 @@ import {
   Legend,
 } from "recharts";
 import type { MonthlyTickets } from "../../api/company/types";
+import { Typography } from "antd";
+import CustomToolTip from "../common/CustomToolTip";
+import EmptyData from "../common/EmptyData";
 
 type Props = {
   chartData: MonthlyTickets[];
@@ -30,34 +33,43 @@ const OverlayAreaChart: React.FC<Props> = ({
   title,
   colors = defaultColors,
 }) => {
+  const { Title, Text } = Typography;
   return (
     <>
-      <div style={{ height: 300, flex: 1, minWidth: 200 }}>
-        {title && <h3 style={{ textAlign: "center" }}>{title}</h3>}
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-
-            <Area
-              type="monotone"
-              dataKey="last_year"
-              stroke={colors.lastYear}
-              fill={colors.lastYear}
-              name="昨年"
-            />
-            <Area
-              type="monotone"
-              dataKey="this_year"
-              stroke={colors.thisYear}
-              fill={colors.thisYear}
-              name="今年"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+      <div style={{ flex: 1, minWidth: 200 }}>
+        <Title level={4} style={{ textAlign: "center" }}>
+          {title}
+        </Title>
+        {chartData.length === 0 ? (
+          <EmptyData />
+        ) : (
+          <ResponsiveContainer aspect={1.5}>
+            <AreaChart
+              data={chartData}
+              margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip content={CustomToolTip} />
+              <Legend formatter={(value: string) => <Text>{value}</Text>} />
+              <Area
+                type="monotone"
+                dataKey="last_year"
+                stroke={colors.lastYear}
+                fill={colors.lastYear}
+                name="昨年"
+              />
+              <Area
+                type="monotone"
+                dataKey="this_year"
+                stroke={colors.thisYear}
+                fill={colors.thisYear}
+                name="今年"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </>
   );
