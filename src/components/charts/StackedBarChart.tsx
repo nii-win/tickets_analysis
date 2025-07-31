@@ -10,6 +10,9 @@ import {
   Legend,
 } from "recharts";
 import type { TimeSlot } from "../../api/company/types";
+import { Typography } from "antd";
+import CustomToolTip from "../common/CustomToolTip";
+import EmptyData from "../common/EmptyData";
 
 type Props = {
   chartData: TimeSlot[];
@@ -31,6 +34,7 @@ const StackedBarChart: React.FC<Props> = ({
   title,
   colors = defaultColors,
 }) => {
+  const { Title, Text } = Typography;
   const dataKeys = [
     "period1",
     "period2",
@@ -41,26 +45,38 @@ const StackedBarChart: React.FC<Props> = ({
   ];
   return (
     <>
-      <div style={{ height: 300, flex: 1, minWidth: 200 }}>
-        {title && <h3 style={{ textAlign: "center" }}>{title}</h3>}
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-            <XAxis dataKey="day" type="category" width={100} />
-            <YAxis type="number" />
-            <Tooltip />
-            <Legend align="right" />
-            {dataKeys.map((key, index) => (
-              <Bar
-                key={key}
-                dataKey={key}
-                stackId="a"
-                fill={colors[index % colors.length]}
-                name={`第${index + 1}限`}
+      <div style={{ flex: 1, minWidth: 200 }}>
+        <Title level={4} style={{ textAlign: "center" }}>
+          {title}
+        </Title>
+        {chartData.length === 0 ? (
+          <EmptyData />
+        ) : (
+          <ResponsiveContainer aspect={1.5}>
+            <BarChart
+              data={chartData}
+              margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis dataKey="day" type="category" />
+              <YAxis type="number" />
+              <Tooltip content={CustomToolTip} />
+              <Legend
+                align="right"
+                formatter={(value: string) => <Text>{value}</Text>}
               />
-            ))}
-          </BarChart>
-        </ResponsiveContainer>
+              {dataKeys.map((key, index) => (
+                <Bar
+                  key={key}
+                  dataKey={key}
+                  stackId="a"
+                  fill={colors[index % colors.length]}
+                  name={`第${index + 1}限`}
+                />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </>
   );

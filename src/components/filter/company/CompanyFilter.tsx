@@ -64,8 +64,12 @@ const CompanyFilter: FC<propsType> = (props) => {
 
   const handleSubmit = async () => {
     const values = await form.validateFields(["year", "month", "company"]);
-    setCompanyParams(values);
-    console.log(values);
+    //queryKeyで並び順も同じでないと同一データと判断されない為月は昇順で並び替え
+    const sortedMonthParams = {
+      ...values,
+      month: [...values.month].sort((a, b) => a - b),
+    };
+    setCompanyParams(sortedMonthParams);
   };
 
   return (

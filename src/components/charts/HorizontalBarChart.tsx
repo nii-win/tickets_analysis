@@ -8,6 +8,7 @@ import {
   Cell,
   Rectangle,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 import type {} from "../ChartDashBoard";
 import { Flex, Switch, Typography } from "antd";
@@ -18,6 +19,7 @@ import type {
 } from "../../api/company/types";
 import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
+import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 
 type ChartData = StudentsForBranches | StudentsForCourses | CourseTickets;
 type Props = {
@@ -26,6 +28,7 @@ type Props = {
   valueKey: string;
   barColor?: string;
   title: string;
+  handleBarClick?: (departmentName: string) => void;
 };
 
 const HorizontalBarChart: React.FC<Props> = ({
@@ -34,6 +37,7 @@ const HorizontalBarChart: React.FC<Props> = ({
   valueKey,
   title,
   barColor = "#70d5f4",
+  handleBarClick,
 }) => {
   const [allShow, setAllShow] = useState(false);
   const { Title } = Typography;
@@ -82,41 +86,50 @@ const HorizontalBarChart: React.FC<Props> = ({
           <EmptyData />
         ) : (
           <div style={{ width: "100%" }}>
-            <BarChart
-              width={950}
-              height={chartHeight}
-              layout="vertical"
-              data={displayedChartData}
-              margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-              <XAxis type="number" />
-              <YAxis
-                dataKey={nameKey}
-                type="category"
-                width={200}
-                tick={{
-                  fontSize: 14,
-                }}
-                tickFormatter={(value: string) =>
-                  value.length > 10 ? `${value.slice(0, 15)}...` : value
-                }
-                interval={0}
-              />
-              <Tooltip content={CustomToolTip} />
-              <Bar
-                dataKey={valueKey}
-                barSize={barHeight}
-                fill={barColor}
-                activeBar={<Rectangle fill="#99a9b7ff" />}
-                label={{ position: "insideRight", fill: "#104911" }}
-                name={valueKey === "tickets" ? "チケット数" : "受講人数"}
+            <ResponsiveContainer width="100%" height={chartHeight}>
+              <BarChart
+                layout="vertical"
+                data={displayedChartData}
+                margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
               >
-                {displayedChartData.map((_, index) => (
-                  <Cell key={`cell-${index}`} />
-                ))}
-              </Bar>
-            </BarChart>
+                <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                <XAxis type="number" />
+                <YAxis
+                  dataKey={nameKey}
+                  type="category"
+                  width={200}
+                  tick={{
+                    fontSize: 14,
+                  }}
+                  tickFormatter={(value: string) => {
+                    if (nameKey === "department") {
+                      const parts = String(value).split("_");
+                      return parts.length > 1 ? parts[1] : value;
+                    } else {
+                      return value.length > 12 ? value.slice(0, 12) : value;
+                    }
+                  }}
+                  interval={0}
+                />
+                <Tooltip content={CustomToolTip} />
+                <Bar
+                  dataKey={valueKey}
+                  barSize={barHeight}
+                  fill={barColor}
+                  activeBar={<Rectangle fill="#99a9b7ff" />}
+                  label={{ position: "insideRight", fill: "#104911" }}
+                  name={valueKey === "tickets" ? "チケット数" : "受講人数"}
+                  onClick={(data: BarRectangleItem) => {
+                    handleBarClick?.(data.payload.department);
+                  }}
+                  style={{ cursor: handleBarClick ? "pointer" : "default" }}
+                >
+                  {displayedChartData.map((_, index) => (
+                    <Cell key={`cell-${index}`} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         )}
       </div>
