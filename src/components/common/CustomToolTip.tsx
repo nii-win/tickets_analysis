@@ -24,9 +24,19 @@ const CustomToolTip = ({
       <Flex vertical>
         <Text style={{ marginBottom: 5 }}>{label}</Text>
         {payload.map((entry, i) => (
-          <Text key={i}>
-            {entry.name}: {entry.value}
-          </Text>
+          <Flex key={i} align="center" gap={8}>
+            <div
+              style={{
+                width: 10,
+                height: 10,
+                backgroundColor: entry.color,
+                borderRadius: 2,
+              }}
+            />
+            <Text key={i}>
+              {entry.name}: {entry.value}
+            </Text>
+          </Flex>
         ))}
       </Flex>
     </Card>

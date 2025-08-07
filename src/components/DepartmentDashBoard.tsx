@@ -8,14 +8,18 @@ import OverlayAreaChart from "./charts/OverlayAreaChart";
 import StackedBarChart from "./charts/StackedBarChart";
 
 type propsType = {
-  companyParams: Params | null;
-  selectedDepartment: string | null;
+  companyParams: Params;
+  selectedDepartment: string;
 };
 const DepartmentDashBoard: FC<propsType> = (props) => {
   const { companyParams, selectedDepartment } = props;
   const { data: departmentAnalysis } = useSuspenseQuery({
     queryKey: ["departmentAnalysis", companyParams, selectedDepartment],
-    queryFn: getDepartmentAnalysis,
+    queryFn: () =>
+      getDepartmentAnalysis({
+        ...companyParams,
+        department: selectedDepartment,
+      }),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -26,14 +30,14 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
     <>
       <Flex vertical gap={48} style={{ padding: 24 }}>
         <HorizontalBarChart
-          chartData={departmentAnalysis?.courseTickets ?? []}
+          chartData={departmentAnalysis?.ticketsForCourses ?? []}
           nameKey="coursename"
-          valueKey="tickets"
+          valueKey="sum"
           title="チケット数講座ランキング"
           barColor={barColor}
         />
         <HorizontalBarChart
-          chartData={departmentAnalysis?.courseStudents ?? []}
+          chartData={departmentAnalysis?.studentsForCourses ?? []}
           nameKey="coursename"
           valueKey="students"
           title="受講人数講座ランキング"
@@ -41,12 +45,12 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
         />
         <Flex justify="space-between" gap={48}>
           <OverlayAreaChart
-            chartData={departmentAnalysis?.monthlyTickets ?? []}
+            chartData={departmentAnalysis?.ticketsForMonths ?? []}
             title="月別チケット数"
             colors={{ thisYear: barColor, lastYear: secondaryBarColor }}
           />
           <StackedBarChart
-            chartData={departmentAnalysis?.timeSlot ?? []}
+            chartData={departmentAnalysis?.ticketsForTimeslot ?? []}
             title="曜日別チケット数 "
           />
         </Flex>
