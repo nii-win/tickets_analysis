@@ -2,9 +2,7 @@ import { Suspense, useState, type FC } from "react";
 import HorizontalBarChart from "./charts/HorizontalBarChart";
 import HorizontalDoubleBarChart from "./charts/HorizontalDoubleBarChart";
 import { Card, Flex, Modal, Typography } from "antd";
-import type {
-  Params,
-} from "../api/company/types";
+import type { Params } from "../api/company/types";
 import getCompanyAnalysis from "../api/company/getCompanyAnalysis";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import Loading from "./common/Loading";
@@ -84,7 +82,7 @@ const ChartDashBoard: FC<propsType> = (props) => {
         destroyOnHidden
         styles={{ body: { maxHeight: "80vh", overflowY: "auto" } }}
       >
-        {selectedDepartment && (
+        {companyParams && selectedDepartment && (
           <Suspense fallback={<Loading />}>
             <DepartmentDashBoard
               companyParams={companyParams}
