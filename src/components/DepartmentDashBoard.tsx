@@ -6,6 +6,7 @@ import { Flex } from "antd";
 import HorizontalBarChart from "./charts/HorizontalBarChart";
 import OverlayAreaChart from "./charts/OverlayAreaChart";
 import StackedBarChart from "./charts/StackedBarChart";
+import { cancelKeys, timeSlotKeys } from "../constans/chartDataKeys";
 
 type propsType = {
   companyParams: Params;
@@ -23,9 +24,6 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const barColor = "#FFD449";
-  const secondaryBarColor = "#A8D5E2";
-
   return (
     <>
       <Flex vertical gap={48} style={{ padding: 24 }}>
@@ -34,24 +32,37 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
           nameKey="coursename"
           valueKey="sum"
           title="チケット数講座ランキング"
-          barColor={barColor}
         />
         <HorizontalBarChart
           chartData={departmentAnalysis?.studentsForCourses ?? []}
           nameKey="coursename"
           valueKey="students"
           title="受講人数講座ランキング"
-          barColor={barColor}
         />
         <Flex justify="space-between" gap={48}>
           <OverlayAreaChart
             chartData={departmentAnalysis?.ticketsForMonths ?? []}
             title="月別チケット数"
-            colors={{ thisYear: barColor, lastYear: secondaryBarColor }}
           />
           <StackedBarChart
             chartData={departmentAnalysis?.ticketsForTimeslot ?? []}
-            title="曜日別チケット数 "
+            title="受講時間帯別チケット数 "
+            dataKeys={timeSlotKeys}
+            xAxisKey="day"
+          />
+        </Flex>
+        <Flex justify="space-between" gap={48}>
+          <StackedBarChart
+            chartData={departmentAnalysis?.ticketsForCancels ?? []}
+            title="月別キャンセルチケット数 "
+            dataKeys={cancelKeys}
+            xAxisKey="month"
+          />
+          <StackedBarChart
+            chartData={departmentAnalysis?.studentsForCancels ?? []}
+            title="受講時間帯別キャンセル受講人数 "
+            dataKeys={timeSlotKeys}
+            xAxisKey="day"
           />
         </Flex>
       </Flex>
