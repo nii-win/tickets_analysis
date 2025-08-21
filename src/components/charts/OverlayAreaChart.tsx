@@ -13,26 +13,14 @@ import type { MonthlyTickets } from "../../api/company/types";
 import { Typography } from "antd";
 import CustomToolTip from "../common/CustomToolTip";
 import EmptyData from "../common/EmptyData";
+import { barColor, secondaryBarColor } from "../../constans/chartColors";
 
 type Props = {
   chartData: MonthlyTickets[];
   title?: string;
-  colors?: {
-    thisYear?: string;
-    lastYear?: string;
-  };
 };
 
-const defaultColors = {
-  thisYear: "#1890ff", // 青
-  lastYear: "#f5222d", // 赤
-};
-
-const OverlayAreaChart: React.FC<Props> = ({
-  chartData,
-  title,
-  colors = defaultColors,
-}) => {
+const OverlayAreaChart: React.FC<Props> = ({ chartData, title }) => {
   const { Title, Text } = Typography;
   return (
     <>
@@ -43,28 +31,32 @@ const OverlayAreaChart: React.FC<Props> = ({
         {chartData.length === 0 ? (
           <EmptyData />
         ) : (
-          <ResponsiveContainer aspect={1.5}>
+          <ResponsiveContainer width="100%" height={300}>
             <AreaChart
               data={chartData}
               margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
+              <XAxis dataKey="month" tickFormatter={(value) => `${value}月`} />
               <YAxis />
-              <Tooltip content={CustomToolTip} />
+              <Tooltip
+                content={(props) => (
+                  <CustomToolTip {...props} xAxisKey="month" />
+                )}
+              />
               <Legend formatter={(value: string) => <Text>{value}</Text>} />
               <Area
                 type="monotone"
                 dataKey="last_year"
-                stroke={colors.lastYear}
-                fill={colors.lastYear}
+                stroke={secondaryBarColor}
+                fill={secondaryBarColor}
                 name="昨年"
               />
               <Area
                 type="monotone"
                 dataKey="this_year"
-                stroke={colors.thisYear}
-                fill={colors.thisYear}
+                stroke={barColor}
+                fill={barColor}
                 name="今年"
               />
             </AreaChart>

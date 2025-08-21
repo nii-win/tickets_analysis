@@ -8,13 +8,6 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import Loading from "./common/Loading";
 import DepartmentDashBoard from "./DepartmentDashBoard";
 
-// type DepartmentAnalysis = {
-//   courseTickets: CourseTickets[];
-//   courseStudents: StudentsForCourses[];
-//   timeSlot: TimeSlot[];
-//   monthlyTickets: MonthlyTickets[];
-// };
-
 type propsType = {
   companyParams: Params | null;
 };
@@ -32,9 +25,6 @@ const ChartDashBoard: FC<propsType> = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { Title } = Typography;
 
-  const barColor = "#FFD449";
-  const secondaryBarColor = "#A8D5E2";
-
   const handleBarClick = (departmentName: string) => {
     setSelectedDepartment(departmentName);
     setIsModalVisible(true);
@@ -47,8 +37,6 @@ const ChartDashBoard: FC<propsType> = (props) => {
           <HorizontalDoubleBarChart
             chartData={companyAnalysis?.ticketsForBranches ?? []}
             title="チケット数支店ランキング"
-            barColor={barColor}
-            secondaryBarColor={secondaryBarColor}
             handleBarClick={handleBarClick}
           />
           <HorizontalBarChart
@@ -56,7 +44,6 @@ const ChartDashBoard: FC<propsType> = (props) => {
             nameKey="department"
             valueKey="students"
             title="受講人数支店ランキング"
-            barColor={barColor}
             handleBarClick={handleBarClick}
           />
           <HorizontalBarChart
@@ -64,7 +51,6 @@ const ChartDashBoard: FC<propsType> = (props) => {
             nameKey="coursename"
             valueKey="students"
             title="受講人数講座ランキング"
-            barColor={barColor}
           />
         </Flex>
       </Card>

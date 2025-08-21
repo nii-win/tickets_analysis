@@ -20,13 +20,13 @@ import type {
 import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
+import { barColor } from "../../constans/chartColors";
 
 type ChartData = StudentsForBranches | StudentsForCourses | CourseTickets;
 type Props = {
   chartData: ChartData[];
   nameKey: string;
   valueKey: string;
-  barColor?: string;
   title: string;
   handleBarClick?: (departmentName: string) => void;
 };
@@ -36,7 +36,6 @@ const HorizontalBarChart: React.FC<Props> = ({
   nameKey,
   valueKey,
   title,
-  barColor = "#70d5f4",
   handleBarClick,
 }) => {
   const [allShow, setAllShow] = useState(false);
@@ -118,7 +117,7 @@ const HorizontalBarChart: React.FC<Props> = ({
                   fill={barColor}
                   activeBar={<Rectangle fill="#99a9b7ff" />}
                   label={{ position: "insideRight", fill: "#104911" }}
-                  name={valueKey === "tickets" ? "チケット数" : "受講人数"}
+                  name={valueKey === "students" ? "受講人数" : "チケット数"}
                   onClick={(data: BarRectangleItem) => {
                     handleBarClick?.(data.payload.department);
                   }}

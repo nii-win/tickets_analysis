@@ -12,37 +12,25 @@ import {
 import type { TimeSlot } from "../../api/company/types";
 import { Typography } from "antd";
 import CustomToolTip from "../common/CustomToolTip";
+import { timeSlotColors } from "../../constans/chartColors";
 import EmptyData from "../common/EmptyData";
+import type { TicketsForCancel } from "../../api/department/types";
 
 type Props = {
-  chartData: TimeSlot[];
+  chartData: TimeSlot[]|TicketsForCancel[];
   title: string;
-  colors?: string[];
+  dataKeys: { key: string; label: string }[];
+  xAxisKey: string;
 };
-
-const defaultColors = [
-  "#4F9D69",
-  "#7CB9A6",
-  "#A8D5E2",
-  "#FFD449",
-  "#F9A620",
-  "#FCB5B5",
-];
 
 const StackedBarChart: React.FC<Props> = ({
   chartData,
   title,
-  colors = defaultColors,
+  dataKeys,
+  xAxisKey,
 }) => {
   const { Title, Text } = Typography;
-  const dataKeys = [
-    "period1",
-    "period2",
-    "period3",
-    "period4",
-    "period5",
-    "period6",
-  ];
+
   return (
     <>
       <div style={{ flex: 1, minWidth: 200 }}>
@@ -52,26 +40,37 @@ const StackedBarChart: React.FC<Props> = ({
         {chartData.length === 0 ? (
           <EmptyData />
         ) : (
-          <ResponsiveContainer aspect={1.5}>
+          <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={chartData}
               margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="day" type="category" />
+              <XAxis
+                dataKey={xAxisKey}
+                type="category"
+                tickFormatter={(value) =>
+                  xAxisKey === "month" ? `${value}月` : value
+                }
+              />
               <YAxis type="number" />
-              <Tooltip content={CustomToolTip} />
+              <Tooltip
+                content={(props) => (
+                  <CustomToolTip {...props} xAxisKey={xAxisKey} />
+                )}
+              />
               <Legend
                 align="right"
                 formatter={(value: string) => <Text>{value}</Text>}
               />
-              {dataKeys.map((key, index) => (
+              {dataKeys.map((datakey, index) => (
                 <Bar
-                  key={key}
-                  dataKey={key}
+                  key={datakey.key}
+                  dataKey={datakey.key}
                   stackId="a"
-                  fill={colors[index % colors.length]}
-                  name={`第${index + 1}限`}
+                  fill={timeSlotColors[index]}
+                  name={datakey.label}
+                  maxBarSize={40}
                 />
               ))}
             </BarChart>
