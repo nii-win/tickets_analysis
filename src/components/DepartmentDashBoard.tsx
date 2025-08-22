@@ -1,12 +1,14 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { type FC } from "react";
 import getDepartmentAnalysis from "../api/department/getDepartmentAnalysis";
-import type { Params } from "../api/company/types";
+import type { MonthlyTickets, Params } from "../api/company/types";
 import { Flex } from "antd";
 import HorizontalBarChart from "./charts/HorizontalBarChart";
 import OverlayAreaChart from "./charts/OverlayAreaChart";
 import StackedBarChart from "./charts/StackedBarChart";
 import { cancelKeys, timeSlotKeys } from "../constans/chartDataKeys";
+import type { TicketsForCancel } from "../api/department/types";
+import sortByFyMonth from "../functions/sortByFyMonth";
 
 type propsType = {
   companyParams: Params;
@@ -23,6 +25,14 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
       }),
     staleTime: 1000 * 60 * 5,
   });
+
+  const sortedTicketsForCancels: TicketsForCancel[] = sortByFyMonth(
+    departmentAnalysis.ticketsForCancels
+  );
+
+  const sortedTicketsForMonths: MonthlyTickets[] = sortByFyMonth(
+    departmentAnalysis.ticketsForMonths
+  );
 
   return (
     <>
@@ -41,7 +51,7 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
         />
         <Flex justify="space-between" gap={48}>
           <OverlayAreaChart
-            chartData={departmentAnalysis?.ticketsForMonths ?? []}
+            chartData={sortedTicketsForMonths ?? []}
             title="月別チケット数"
           />
           <StackedBarChart
@@ -53,7 +63,7 @@ const DepartmentDashBoard: FC<propsType> = (props) => {
         </Flex>
         <Flex justify="space-between" gap={48}>
           <StackedBarChart
-            chartData={departmentAnalysis?.ticketsForCancels ?? []}
+            chartData={sortedTicketsForCancels ?? []}
             title="月別キャンセルチケット数 "
             dataKeys={cancelKeys}
             xAxisKey="month"
