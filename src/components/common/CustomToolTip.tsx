@@ -5,13 +5,14 @@ import type {
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
 
-const CustomToolTip = ({
-  active,
-  payload,
-  label,
-}: TooltipContentProps<ValueType, NameType>) => {
+type PropsType = TooltipContentProps<ValueType, NameType> & {
+  xAxisKey?: string;
+};
+
+const CustomToolTip = ({ active, payload, label, xAxisKey }: PropsType) => {
   if (!active || !payload || payload.length === 0) return null;
   const { Text } = Typography;
+  const displayedLabel = xAxisKey === "month" ? `${label}月` : label;
 
   return (
     <Card
@@ -22,7 +23,7 @@ const CustomToolTip = ({
       }}
     >
       <Flex vertical>
-        <Text style={{ marginBottom: 5 }}>{label}</Text>
+        <Text style={{ marginBottom: 5 }}>{displayedLabel}</Text>
         {payload.map((entry, i) => (
           <Flex key={i} align="center" gap={8}>
             <div

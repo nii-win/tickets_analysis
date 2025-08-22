@@ -4,3 +4,9 @@ export type Params = {
   company: string;
   department: string;
 };
+
+export type TicketsForCancel = {
+  month: string;
+  cancelOnDay: string;
+  noShow: string;
+};

@@ -14,20 +14,17 @@ import type { TicketsForBranches } from "../../api/company/types";
 import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
+import { barColor, secondaryBarColor } from "../../constans/chartColors";
 
 type Props = {
   chartData: TicketsForBranches[];
   title: string;
-  barColor?: string;
-  secondaryBarColor?: string;
   handleBarClick?: (departmentName: string) => void;
 };
 
 const HorizontalDoubleBarChart: React.FC<Props> = ({
   chartData,
   title,
-  barColor = "#70d5f4",
-  secondaryBarColor = "#99a9b7ff",
   handleBarClick,
 }) => {
   const [allShow, setAllShow] = useState(false);

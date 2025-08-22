@@ -9,7 +9,7 @@ import {
   Select,
   Typography,
 } from "antd";
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useMemo, useState, type FC } from "react";
 import {
   buttonColStyle,
   checkboxGroupStyle,
@@ -20,6 +20,7 @@ import {
 import { MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
 import type { CompanyAnalysis, Params } from "../../../api/company/types";
 import { useQueryClient } from "@tanstack/react-query";
+import getFiscalInfo from "./functions/getFiscalInfo";
 
 type propsType = {
   companyParams: Params | null;
@@ -28,6 +29,7 @@ type propsType = {
 
 const CompanyFilter: FC<propsType> = (props) => {
   const { companyParams, setCompanyParams } = props;
+  const [selectedFY, setSelectedFY] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(true);
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
@@ -44,16 +46,24 @@ const CompanyFilter: FC<propsType> = (props) => {
     }
   }, [companyAnalysis, form]);
 
-  const yearData = [2020, 2021, 2022, 2023, 2024, 2025];
-  const monthData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const companyData = ["TPD", "TPE", "TPI", "THD"];
+  useEffect(() => {
+    form.setFieldsValue({ month: [] });
+  }, [selectedFY, form]);
 
-  const yearSelectOptins = yearData.map((year) => ({
+  const { years, allMonths, quarters, companies, getAvailableMonths } =
+    getFiscalInfo();
+
+  const monthData = useMemo(
+    () => getAvailableMonths(selectedFY),
+    [getAvailableMonths, selectedFY]
+  );
+
+  const yearOptins = years.map((year) => ({
     value: year,
-    label: `${year}年`,
+    label: `FY${String(year).slice(-2)}`,
   }));
 
-  const companySelectOptions = companyData.map((company) => ({
+  const companyOptions = companies.map((company) => ({
     value: company,
     label: company,
   }));
@@ -70,6 +80,15 @@ const CompanyFilter: FC<propsType> = (props) => {
       month: [...values.month].sort((a, b) => a - b),
     };
     setCompanyParams(sortedMonthParams);
+  };
+
+  const handleQuarterClick = (range: number[]) => {
+    const current: number[] = form.getFieldValue("month") || [];
+    const target = monthData.filter((m) => range.includes(m));
+    const newValue = current.some((m) => target.includes(m))
+      ? current.filter((m) => !target.includes(m)) // すでに含まれていたら外す
+      : [...current, ...target]; // 含まれてなければ追加
+    form.setFieldsValue({ month: newValue });
   };
 
   return (
@@ -100,10 +119,7 @@ const CompanyFilter: FC<propsType> = (props) => {
                       { required: true, message: "企業名を選択してください" },
                     ]}
                   >
-                    <Select
-                      placeholder="企業を選択"
-                      options={companySelectOptions}
-                    />
+                    <Select placeholder="企業を選択" options={companyOptions} />
                   </Form.Item>
                 </Col>
                 <Col flex="1 1 0" style={colStyle}>
@@ -117,7 +133,11 @@ const CompanyFilter: FC<propsType> = (props) => {
                   >
                     <Select
                       placeholder="年度を選択"
-                      options={yearSelectOptins}
+                      options={yearOptins}
+                      onChange={(value) => {
+                        setSelectedFY(value);
+                        form.setFieldsValue({ month: [] });
+                      }}
                     />
                   </Form.Item>
                 </Col>
@@ -134,16 +154,52 @@ const CompanyFilter: FC<propsType> = (props) => {
                       },
                     ]}
                   >
-                    <CheckboxGroup>
+                    <CheckboxGroup
+                      value={form.getFieldValue("month")}
+                      onChange={(val) => form.setFieldsValue({ month: val })}
+                      style={{ paddingBottom: 8 }}
+                    >
                       <Row gutter={[0, 8]}>
-                        {monthData.map((month) => (
+                        {allMonths.map((month) => (
                           <Col span={4} key={month} style={checkboxGroupStyle}>
-                            <Checkbox value={month}>{month}月</Checkbox>
+                            <Checkbox
+                              value={month}
+                              disabled={!monthData.includes(month)}
+                            >
+                              {month}月
+                            </Checkbox>
                           </Col>
                         ))}
                       </Row>
                     </CheckboxGroup>
                   </Form.Item>
+                  <Flex gap={8} style={{ marginBottom: 8 }}>
+                    <Button
+                      size="small"
+                      onClick={() => {
+                        const current = form.getFieldValue("month") || [];
+                        if (current.length === monthData.length) {
+                          // すでに全選択されていたら解除
+                          form.setFieldsValue({ month: [] });
+                        } else {
+                          // 全部選択
+                          form.setFieldsValue({ month: monthData });
+                        }
+                      }}
+                    >
+                      全選択
+                    </Button>
+
+                    {quarters.map((q) => (
+                      <Button
+                        key={q.label}
+                        size="small"
+                        onClick={() => handleQuarterClick(q.range)}
+                      >
+                        {q.label}
+                      </Button>
+                    ))}
+                  </Flex>
                 </Col>
 
                 <Col flex="0 0 100px" style={buttonColStyle}>
