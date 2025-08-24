@@ -52,6 +52,7 @@ const StackedBarChart: React.FC<Props> = ({
                 tickFormatter={(value) =>
                   xAxisKey === "month" ? `${value}月` : value
                 }
+                interval={0}
               />
               <YAxis type="number" />
               <Tooltip
@@ -60,7 +61,6 @@ const StackedBarChart: React.FC<Props> = ({
                 )}
               />
               <Legend
-                align="right"
                 formatter={(value: string) => <Text>{value}</Text>}
               />
               {dataKeys.map((datakey, index) => (

@@ -37,7 +37,11 @@ const OverlayAreaChart: React.FC<Props> = ({ chartData, title }) => {
               margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" tickFormatter={(value) => `${value}月`} />
+              <XAxis
+                dataKey="month"
+                tickFormatter={(value) => `${value}月`}
+                interval={0}
+              />
               <YAxis />
               <Tooltip
                 content={(props) => (

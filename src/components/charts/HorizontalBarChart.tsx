@@ -5,10 +5,11 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Cell,
   Rectangle,
   CartesianGrid,
   ResponsiveContainer,
+  LabelList,
+  Label,
 } from "recharts";
 import type {} from "../ChartDashBoard";
 import { Flex, Switch, Typography } from "antd";
@@ -92,7 +93,13 @@ const HorizontalBarChart: React.FC<Props> = ({
                 margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                <XAxis type="number" />
+                <XAxis type="number">
+                  <Label
+                    value={valueKey === "students" ? "受講人数" : "チケット数"}
+                    offset={-5}
+                    position={"insideBottom"}
+                  />
+                </XAxis>
                 <YAxis
                   dataKey={nameKey}
                   type="category"
@@ -116,16 +123,22 @@ const HorizontalBarChart: React.FC<Props> = ({
                   barSize={barHeight}
                   fill={barColor}
                   activeBar={<Rectangle fill="#99a9b7ff" />}
-                  label={{ position: "insideRight", fill: "#104911" }}
                   name={valueKey === "students" ? "受講人数" : "チケット数"}
                   onClick={(data: BarRectangleItem) => {
                     handleBarClick?.(data.payload.department);
                   }}
                   style={{ cursor: handleBarClick ? "pointer" : "default" }}
                 >
-                  {displayedChartData.map((_, index) => (
-                    <Cell key={`cell-${index}`} />
-                  ))}
+                  <LabelList
+                    dataKey={valueKey}
+                    formatter={(value) => {
+                      const num = Number(value);
+                      if (num === 0) return "";
+                      if (num % 1 === 0) return num;
+                      return num.toFixed(2);
+                    }}
+                    position="insideRight"
+                  />
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
