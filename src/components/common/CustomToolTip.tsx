@@ -35,7 +35,10 @@ const CustomToolTip = ({ active, payload, label, xAxisKey }: PropsType) => {
               }}
             />
             <Text key={i}>
-              {entry.name}: {entry.value}
+              {entry.name}:{" "}
+              {Number(entry.value) % 1 === 0
+                ? entry.value
+                : Number(entry.value).toFixed(2)}
             </Text>
           </Flex>
         ))}

@@ -74,7 +74,7 @@ const CompanyFilter: FC<propsType> = (props) => {
 
   const handleSubmit = async () => {
     const values = await form.validateFields(["year", "month", "company"]);
-    //queryKeyで並び順も同じでないと同一データと判断されない為月は昇順で並び替え
+    // queryKeyで並び順も同じでないと同一データと判断されない為月は昇順で並び替え
     const sortedMonthParams = {
       ...values,
       month: [...values.month].sort((a, b) => a - b),
@@ -85,9 +85,14 @@ const CompanyFilter: FC<propsType> = (props) => {
   const handleQuarterClick = (range: number[]) => {
     const current: number[] = form.getFieldValue("month") || [];
     const target = monthData.filter((m) => range.includes(m));
-    const newValue = current.some((m) => target.includes(m))
-      ? current.filter((m) => !target.includes(m)) // すでに含まれていたら外す
-      : [...current, ...target]; // 含まれてなければ追加
+
+    // その四半期が "すべて選択済み" かどうか
+  const isAllSelected = target.every((m) => current.includes(m));
+
+  const newValue = isAllSelected
+    ? current.filter((m) => !target.includes(m)) // 全部入ってたら外す
+    : [...new Set([...current, ...target])]; // 一部 or 0 なら全部追加
+    
     form.setFieldsValue({ month: newValue });
   };
 

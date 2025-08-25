@@ -8,6 +8,8 @@ import {
   CartesianGrid,
   Legend,
   ResponsiveContainer,
+  LabelList,
+  Label,
 } from "recharts";
 import { Flex, Switch, Typography } from "antd";
 import type { TicketsForBranches } from "../../api/company/types";
@@ -78,7 +80,13 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 margin={{ top: 20, right: 10, bottom: 10, left: 0 }}
               >
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                <XAxis type="number" />
+                <XAxis type="number">
+                  <Label
+                    value="チケット数"
+                    offset={-5}
+                    position="insideBottom"
+                  />
+                </XAxis>
                 <YAxis
                   dataKey="department"
                   type="category"
@@ -91,29 +99,49 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                   interval={0}
                 />
                 <Tooltip content={CustomToolTip} />
-                <Legend formatter={(value: string) => <Text>{value}</Text>} />
+                <Legend
+                  formatter={(value: string) => <Text>{value}</Text>}
+                  wrapperStyle={{  bottom: -5, left: 100 }}
+                />
                 <Bar
                   barSize={barHeight}
                   dataKey="this_year"
                   fill={barColor}
                   name={"今年"}
-                  label={{ position: "insideRight", fill: "#104911" }}
                   onClick={(data: BarRectangleItem) => {
                     handleBarClick?.(data.payload.department);
                   }}
                   style={{ cursor: handleBarClick ? "pointer" : "default" }}
-                />
+                >
+                  <LabelList
+                    dataKey="this_year"
+                    formatter={(value) => {
+                      const num = Number(value);
+                      if (num === 0) return "";
+                      if (num % 1 === 0) return num;
+                      return num.toFixed(2);
+                    }}
+                    position="insideRight"
+                  />
+                </Bar>
                 <Bar
                   barSize={barHeight}
                   dataKey="last_year"
                   fill={secondaryBarColor}
                   name={"前年"}
-                  label={{ position: "insideRight", fill: "#104911" }}
                   onClick={(data: BarRectangleItem) => {
                     handleBarClick?.(data.payload.department);
                   }}
                   style={{ cursor: handleBarClick ? "pointer" : "default" }}
-                />
+                >
+                  <LabelList
+                    dataKey="last_year"
+                    formatter={(value) =>
+                      Number(value) === 0 ? "" : Number(value).toFixed(2)
+                    }
+                    position="insideRight"
+                  />
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>
