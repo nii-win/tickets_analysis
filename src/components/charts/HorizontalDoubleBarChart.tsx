@@ -90,18 +90,19 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 <YAxis
                   dataKey="department"
                   type="category"
-                  width={200}
-                  tick={{ fontSize: 14 }}
+                  width={250}
+                  tick={{ fontSize: 12 }}
                   tickFormatter={(value: string) => {
-                    const parts = String(value).split("_");
-                    return parts.length > 1 ? parts[1] : value;
+                    const str = String(value);
+                    const index = str.indexOf("_");
+                    return index !== -1 ? str.slice(index + 1) : str;
                   }}
                   interval={0}
                 />
                 <Tooltip content={CustomToolTip} />
                 <Legend
                   formatter={(value: string) => <Text>{value}</Text>}
-                  wrapperStyle={{  bottom: -5, left: 100 }}
+                  wrapperStyle={{ bottom: -5, left: 100 }}
                 />
                 <Bar
                   barSize={barHeight}

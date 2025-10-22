@@ -22,6 +22,7 @@ import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 import { barColor } from "../../constans/chartColors";
+import formatYAxisLabel from "./functions/formatYAxisLabel";
 
 type ChartData = StudentsForBranches | StudentsForCourses | CourseTickets;
 type Props = {
@@ -103,17 +104,20 @@ const HorizontalBarChart: React.FC<Props> = ({
                 <YAxis
                   dataKey={nameKey}
                   type="category"
-                  width={200}
-                  tick={{
-                    fontSize: 14,
-                  }}
-                  tickFormatter={(value: string) => {
-                    if (nameKey === "department") {
-                      const parts = String(value).split("_");
-                      return parts.length > 1 ? parts[1] : value;
-                    } else {
-                      return value.length > 12 ? value.slice(0, 12) : value;
-                    }
+                  width={250}
+                  tick={(props) => {
+                    const { x, y, payload } = props;
+                    return (
+                      <text
+                        x={x}
+                        y={y}
+                        fontSize={12}
+                        textAnchor="end"
+                        fill="#666"
+                      >
+                        {formatYAxisLabel(String(payload.value ?? ""), nameKey)}
+                      </text>
+                    );
                   }}
                   interval={0}
                 />
