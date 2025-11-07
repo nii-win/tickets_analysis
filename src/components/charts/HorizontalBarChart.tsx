@@ -23,6 +23,7 @@ import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 import { barColor } from "../../constans/chartColors";
 import formatYAxisLabel from "./functions/formatYAxisLabel";
+import CustomBarLabel from "../common/CustomBarLabel";
 
 type ChartData = StudentsForBranches | StudentsForCourses | CourseTickets;
 type Props = {
@@ -135,13 +136,7 @@ const HorizontalBarChart: React.FC<Props> = ({
                 >
                   <LabelList
                     dataKey={valueKey}
-                    formatter={(value) => {
-                      const num = Number(value);
-                      if (num === 0) return "";
-                      if (num % 1 === 0) return num;
-                      return num.toFixed(2);
-                    }}
-                    position="insideRight"
+                    content={(props) => <CustomBarLabel {...props} />}
                   />
                 </Bar>
               </BarChart>

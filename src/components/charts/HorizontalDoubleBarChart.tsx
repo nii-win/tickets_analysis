@@ -17,6 +17,7 @@ import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 import { barColor, secondaryBarColor } from "../../constans/chartColors";
+import CustomBarLabel from "../common/CustomBarLabel";
 
 type Props = {
   chartData: TicketsForBranches[];
@@ -116,13 +117,9 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 >
                   <LabelList
                     dataKey="this_year"
-                    formatter={(value) => {
-                      const num = Number(value);
-                      if (num === 0) return "";
-                      if (num % 1 === 0) return num;
-                      return num.toFixed(2);
-                    }}
-                    position="insideRight"
+                    content={(props) => (
+                      <CustomBarLabel {...props} fontsize={12} />
+                    )}
                   />
                 </Bar>
                 <Bar
@@ -137,10 +134,9 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 >
                   <LabelList
                     dataKey="last_year"
-                    formatter={(value) =>
-                      Number(value) === 0 ? "" : Number(value).toFixed(2)
-                    }
-                    position="insideRight"
+                    content={(props) => (
+                      <CustomBarLabel {...props} fontsize={12} />
+                    )}
                   />
                 </Bar>
               </BarChart>
