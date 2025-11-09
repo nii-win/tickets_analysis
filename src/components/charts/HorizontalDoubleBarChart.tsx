@@ -17,6 +17,7 @@ import EmptyData from "../common/EmptyData";
 import CustomToolTip from "../common/CustomToolTip";
 import type { BarRectangleItem } from "recharts/types/cartesian/Bar";
 import { barColor, secondaryBarColor } from "../../constans/chartColors";
+import CustomBarLabel from "../common/CustomBarLabel";
 
 type Props = {
   chartData: TicketsForBranches[];
@@ -90,18 +91,19 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 <YAxis
                   dataKey="department"
                   type="category"
-                  width={200}
-                  tick={{ fontSize: 14 }}
+                  width={250}
+                  tick={{ fontSize: 12 }}
                   tickFormatter={(value: string) => {
-                    const parts = String(value).split("_");
-                    return parts.length > 1 ? parts[1] : value;
+                    const str = String(value);
+                    const index = str.indexOf("_");
+                    return index !== -1 ? str.slice(index + 1) : str;
                   }}
                   interval={0}
                 />
                 <Tooltip content={CustomToolTip} />
                 <Legend
                   formatter={(value: string) => <Text>{value}</Text>}
-                  wrapperStyle={{  bottom: -5, left: 100 }}
+                  wrapperStyle={{ bottom: -5, left: 100 }}
                 />
                 <Bar
                   barSize={barHeight}
@@ -115,13 +117,9 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 >
                   <LabelList
                     dataKey="this_year"
-                    formatter={(value) => {
-                      const num = Number(value);
-                      if (num === 0) return "";
-                      if (num % 1 === 0) return num;
-                      return num.toFixed(2);
-                    }}
-                    position="insideRight"
+                    content={(props) => (
+                      <CustomBarLabel {...props} fontsize={12} />
+                    )}
                   />
                 </Bar>
                 <Bar
@@ -136,10 +134,9 @@ const HorizontalDoubleBarChart: React.FC<Props> = ({
                 >
                   <LabelList
                     dataKey="last_year"
-                    formatter={(value) =>
-                      Number(value) === 0 ? "" : Number(value).toFixed(2)
-                    }
-                    position="insideRight"
+                    content={(props) => (
+                      <CustomBarLabel {...props} fontsize={12} />
+                    )}
                   />
                 </Bar>
               </BarChart>
